@@ -12,6 +12,7 @@ import UIKit
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var dataToSend: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,8 +93,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     func found(code: String) {
-        var createRequest = APIRequest.init(data: code)
-        var data = createRequest.makeGetRequest()
+        let createRequest = APIRequest.init(data: code)
+        let data = createRequest.makeGetRequest()
+        self.dataToSend = data
         if data == "" {
             let alert = UIAlertController(title: "Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
             
@@ -107,9 +109,18 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             
         }
         else {
-            
+            self.performSegue(withIdentifier: "moveToData", sender: self)
         }
         
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moveToData" {
+            let vc = segue.destination as! DataViewController
+            vc.data = self.dataToSend
+        }
     }
 
     override var prefersStatusBarHidden: Bool {

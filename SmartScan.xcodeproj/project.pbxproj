@@ -14,6 +14,7 @@
 		CD4A2A8823EF2FC40005903D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4A2A8623EF2FC40005903D /* LaunchScreen.storyboard */; };
 		CD4A2A9023EF31F90005903D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A8F23EF31F90005903D /* ScannerViewController.swift */; };
 		CD4A2A9223EF364E0005903D /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A9123EF364E0005903D /* APIRequest.swift */; };
+		CD4A2A9423EF45BC0005903D /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A9323EF45BC0005903D /* DataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CD4A2A8923EF2FC40005903D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD4A2A8F23EF31F90005903D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		CD4A2A9123EF364E0005903D /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		CD4A2A9323EF45BC0005903D /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				CD4A2A8923EF2FC40005903D /* Info.plist */,
 				CD4A2A8F23EF31F90005903D /* ScannerViewController.swift */,
 				CD4A2A9123EF364E0005903D /* APIRequest.swift */,
+				CD4A2A9323EF45BC0005903D /* DataViewController.swift */,
 			);
 			path = SmartScan;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				CD4A2A7C23EF2FBF0005903D /* AppDelegate.swift in Sources */,
 				CD4A2A7E23EF2FBF0005903D /* SceneDelegate.swift in Sources */,
+				CD4A2A9423EF45BC0005903D /* DataViewController.swift in Sources */,
 				CD4A2A9223EF364E0005903D /* APIRequest.swift in Sources */,
 				CD4A2A9023EF31F90005903D /* ScannerViewController.swift in Sources */,
 			);
