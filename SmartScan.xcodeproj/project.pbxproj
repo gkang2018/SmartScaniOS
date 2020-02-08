@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		CD4A2A7C23EF2FBF0005903D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A7B23EF2FBF0005903D /* AppDelegate.swift */; };
 		CD4A2A7E23EF2FBF0005903D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A7D23EF2FBF0005903D /* SceneDelegate.swift */; };
-		CD4A2A8023EF2FBF0005903D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A7F23EF2FBF0005903D /* ViewController.swift */; };
 		CD4A2A8323EF2FBF0005903D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4A2A8123EF2FBF0005903D /* Main.storyboard */; };
 		CD4A2A8523EF2FC40005903D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD4A2A8423EF2FC40005903D /* Assets.xcassets */; };
 		CD4A2A8823EF2FC40005903D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4A2A8623EF2FC40005903D /* LaunchScreen.storyboard */; };
+		CD4A2A9023EF31F90005903D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A8F23EF31F90005903D /* ScannerViewController.swift */; };
+		CD4A2A9223EF364E0005903D /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A9123EF364E0005903D /* APIRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CD4A2A7823EF2FBF0005903D /* SmartScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4A2A7B23EF2FBF0005903D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD4A2A7D23EF2FBF0005903D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CD4A2A7F23EF2FBF0005903D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD4A2A8223EF2FBF0005903D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD4A2A8423EF2FC40005903D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD4A2A8723EF2FC40005903D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD4A2A8923EF2FC40005903D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD4A2A8F23EF31F90005903D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		CD4A2A9123EF364E0005903D /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				CD4A2A7B23EF2FBF0005903D /* AppDelegate.swift */,
 				CD4A2A7D23EF2FBF0005903D /* SceneDelegate.swift */,
-				CD4A2A7F23EF2FBF0005903D /* ViewController.swift */,
 				CD4A2A8123EF2FBF0005903D /* Main.storyboard */,
 				CD4A2A8423EF2FC40005903D /* Assets.xcassets */,
 				CD4A2A8623EF2FC40005903D /* LaunchScreen.storyboard */,
 				CD4A2A8923EF2FC40005903D /* Info.plist */,
+				CD4A2A8F23EF31F90005903D /* ScannerViewController.swift */,
+				CD4A2A9123EF364E0005903D /* APIRequest.swift */,
 			);
 			path = SmartScan;
 			sourceTree = "<group>";
@@ -138,9 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD4A2A8023EF2FBF0005903D /* ViewController.swift in Sources */,
 				CD4A2A7C23EF2FBF0005903D /* AppDelegate.swift in Sources */,
 				CD4A2A7E23EF2FBF0005903D /* SceneDelegate.swift in Sources */,
+				CD4A2A9223EF364E0005903D /* APIRequest.swift in Sources */,
+				CD4A2A9023EF31F90005903D /* ScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
