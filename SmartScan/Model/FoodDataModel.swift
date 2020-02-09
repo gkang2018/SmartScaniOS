@@ -15,6 +15,6 @@ class FoodDataModel {
     var foodBrand: String = ""
     var product: String = ""
     var testedIngredients: String = ""
-    
+    var isEmpty: Bool = false
     
 }

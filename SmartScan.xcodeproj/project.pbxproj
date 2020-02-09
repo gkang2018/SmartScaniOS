@@ -86,8 +86,8 @@
 		CD4A2A7A23EF2FBF0005903D /* SmartScan */ = {
 			isa = PBXGroup;
 			children = (
-				CDBB1A6D23EF81C80033152A /* Model */,
 				CD4A2A7B23EF2FBF0005903D /* AppDelegate.swift */,
+				CDBB1A6D23EF81C80033152A /* Model */,
 				CD4A2A7D23EF2FBF0005903D /* SceneDelegate.swift */,
 				CD4A2A8123EF2FBF0005903D /* Main.storyboard */,
 				CD4A2A8423EF2FC40005903D /* Assets.xcassets */,

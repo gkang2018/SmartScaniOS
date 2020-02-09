@@ -9,17 +9,28 @@
 import UIKit
 
 class DataViewController: UIViewController {
-
-    var data: NSDictionary = NSDictionary()
+    
+    var testedIngredients: String = ""
+    var product: String = ""
+    var brand: String = ""
+    var ingredients: [String] = []
+    var light: String =  ""
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        lightImage.image = UIImage(named: "yellow.png")
+        print(self.product)
         // Do any additional setup after loading the view.
     }
     
     
     
+    @IBOutlet weak var lightImage: UIImageView!
     
+    @IBOutlet weak var textView: UITextView!
     
 
     

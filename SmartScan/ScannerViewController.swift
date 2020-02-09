@@ -12,11 +12,17 @@ import UIKit
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var dataToSend: NSDictionary = NSDictionary()
-
+    
+    var testedIngredients: String = ""
+    var product: String = ""
+    var brand: String = ""
+    var ingredients: [String] = []
+    var light: String =  ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
 
@@ -89,30 +95,38 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             found(code: stringValue)
         }
 
-        dismiss(animated: true)
     }
 
     func found(code: String) {
         let createRequest = APIRequest.init(data: code)
-        let data = createRequest.makeGetRequest()
-       
-//        if data.allKeys.count == 0 {
-//            let alert = UIAlertController(title: "Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
-//
-//            let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
-//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
-//                , handler: nil)
-//
-//            alert.addAction(tryAgainAction)
-//            alert.addAction(cancelAction)
-//
-//            present(alert, animated: true)
-//
-//        }
-//        else {
-//            self.performSegue(withIdentifier: "moveToData", sender: self)
-//        }
+        createRequest.makeGetRequest()
+        let data = createRequest.foodDataModel
+        if data.isEmpty {
+                let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
+
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
+                    , handler: {action in
+                        self.viewDidLoad()
+                })
+
+                alert.addAction(cancelAction)
+
+            present(alert, animated: true,
+                    completion: nil)
+
+        }
+        else {
+                self.brand = data.foodBrand
+                self.ingredients = data.ingredients
+                self.testedIngredients = data.testedIngredients
+                self.light = data.light
+                self.product = data.product
+                
+                performSegue(withIdentifier: "moveToData", sender: self)
+         }
         
+    
     }
     
     
@@ -120,7 +134,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moveToData" {
             let vc = segue.destination as! DataViewController
-            vc.data = self.dataToSend
+            vc.brand = self.brand
+            vc.ingredients = self.ingredients
+            vc.testedIngredients = self.testedIngredients
+            vc.light = self.light
+            vc.product = self.product
         }
     }
 
@@ -131,4 +149,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
+    
+    
+    
+    //MARK: - Networking
+    
+    
 }
