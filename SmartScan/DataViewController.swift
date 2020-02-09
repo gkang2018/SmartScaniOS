@@ -10,12 +10,14 @@ import UIKit
 
 class DataViewController: UIViewController {
 
-    var data: String = ""
+    var data: NSDictionary = NSDictionary()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    
     
     
     

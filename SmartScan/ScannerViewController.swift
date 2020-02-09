@@ -12,7 +12,7 @@ import UIKit
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var dataToSend: String = ""
+    var dataToSend: NSDictionary = NSDictionary()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,22 +95,23 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     func found(code: String) {
         let createRequest = APIRequest.init(data: code)
         let data = createRequest.makeGetRequest()
-        self.dataToSend = data
-        if data == "" {
-            let alert = UIAlertController(title: "Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
-            
-            let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
-                , handler: nil)
-            
-            alert.addAction(tryAgainAction)
-            alert.addAction(cancelAction)
-            
-            
-        }
-        else {
-            self.performSegue(withIdentifier: "moveToData", sender: self)
-        }
+       
+//        if data.allKeys.count == 0 {
+//            let alert = UIAlertController(title: "Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
+//
+//            let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
+//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
+//                , handler: nil)
+//
+//            alert.addAction(tryAgainAction)
+//            alert.addAction(cancelAction)
+//
+//            present(alert, animated: true)
+//
+//        }
+//        else {
+//            self.performSegue(withIdentifier: "moveToData", sender: self)
+//        }
         
     }
     

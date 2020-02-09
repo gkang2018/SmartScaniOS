@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B6DC042E327C2FB805F5834 /* Pods_SmartScan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3115B30BEF256207805B0874 /* Pods_SmartScan.framework */; };
 		CD4A2A7C23EF2FBF0005903D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A7B23EF2FBF0005903D /* AppDelegate.swift */; };
 		CD4A2A7E23EF2FBF0005903D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A7D23EF2FBF0005903D /* SceneDelegate.swift */; };
 		CD4A2A8323EF2FBF0005903D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4A2A8123EF2FBF0005903D /* Main.storyboard */; };
@@ -15,9 +16,13 @@
 		CD4A2A9023EF31F90005903D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A8F23EF31F90005903D /* ScannerViewController.swift */; };
 		CD4A2A9223EF364E0005903D /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A9123EF364E0005903D /* APIRequest.swift */; };
 		CD4A2A9423EF45BC0005903D /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A9323EF45BC0005903D /* DataViewController.swift */; };
+		CDBB1A6F23EF820C0033152A /* FoodDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB1A6E23EF820C0033152A /* FoodDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3115B30BEF256207805B0874 /* Pods_SmartScan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartScan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B615FDB84468BC736E94144 /* Pods-SmartScan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartScan.release.xcconfig"; path = "Target Support Files/Pods-SmartScan/Pods-SmartScan.release.xcconfig"; sourceTree = "<group>"; };
+		853FB2D2EE60CBD634BEF506 /* Pods-SmartScan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartScan.debug.xcconfig"; path = "Target Support Files/Pods-SmartScan/Pods-SmartScan.debug.xcconfig"; sourceTree = "<group>"; };
 		CD4A2A7823EF2FBF0005903D /* SmartScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4A2A7B23EF2FBF0005903D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD4A2A7D23EF2FBF0005903D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +33,7 @@
 		CD4A2A8F23EF31F90005903D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		CD4A2A9123EF364E0005903D /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		CD4A2A9323EF45BC0005903D /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
+		CDBB1A6E23EF820C0033152A /* FoodDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6DC042E327C2FB805F5834 /* Pods_SmartScan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		674D1FD3C661B6B5981E35AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3115B30BEF256207805B0874 /* Pods_SmartScan.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB4DBF11ECA53B471DC63422 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				853FB2D2EE60CBD634BEF506 /* Pods-SmartScan.debug.xcconfig */,
+				6B615FDB84468BC736E94144 /* Pods-SmartScan.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CD4A2A6F23EF2FBF0005903D = {
 			isa = PBXGroup;
 			children = (
 				CD4A2A7A23EF2FBF0005903D /* SmartScan */,
 				CD4A2A7923EF2FBF0005903D /* Products */,
+				AB4DBF11ECA53B471DC63422 /* Pods */,
+				674D1FD3C661B6B5981E35AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +86,7 @@
 		CD4A2A7A23EF2FBF0005903D /* SmartScan */ = {
 			isa = PBXGroup;
 			children = (
+				CDBB1A6D23EF81C80033152A /* Model */,
 				CD4A2A7B23EF2FBF0005903D /* AppDelegate.swift */,
 				CD4A2A7D23EF2FBF0005903D /* SceneDelegate.swift */,
 				CD4A2A8123EF2FBF0005903D /* Main.storyboard */,
@@ -73,6 +100,14 @@
 			path = SmartScan;
 			sourceTree = "<group>";
 		};
+		CDBB1A6D23EF81C80033152A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CDBB1A6E23EF820C0033152A /* FoodDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD4A2A8C23EF2FC40005903D /* Build configuration list for PBXNativeTarget "SmartScan" */;
 			buildPhases = (
+				4E4BCBC281208F7F21651090 /* [CP] Check Pods Manifest.lock */,
 				CD4A2A7423EF2FBF0005903D /* Sources */,
 				CD4A2A7523EF2FBF0005903D /* Frameworks */,
 				CD4A2A7623EF2FBF0005903D /* Resources */,
+				1627C9DE384FFCFB5063B2D4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,6 +176,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1627C9DE384FFCFB5063B2D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartScan/Pods-SmartScan-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartScan/Pods-SmartScan-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartScan/Pods-SmartScan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E4BCBC281208F7F21651090 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartScan-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CD4A2A7423EF2FBF0005903D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -147,6 +226,7 @@
 				CD4A2A7C23EF2FBF0005903D /* AppDelegate.swift in Sources */,
 				CD4A2A7E23EF2FBF0005903D /* SceneDelegate.swift in Sources */,
 				CD4A2A9423EF45BC0005903D /* DataViewController.swift in Sources */,
+				CDBB1A6F23EF820C0033152A /* FoodDataModel.swift in Sources */,
 				CD4A2A9223EF364E0005903D /* APIRequest.swift in Sources */,
 				CD4A2A9023EF31F90005903D /* ScannerViewController.swift in Sources */,
 			);
@@ -290,9 +370,11 @@
 		};
 		CD4A2A8D23EF2FC40005903D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 853FB2D2EE60CBD634BEF506 /* Pods-SmartScan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HJK3QQUJ6;
 				INFOPLIST_FILE = SmartScan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -307,9 +389,11 @@
 		};
 		CD4A2A8E23EF2FC40005903D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B615FDB84468BC736E94144 /* Pods-SmartScan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HJK3QQUJ6;
 				INFOPLIST_FILE = SmartScan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
