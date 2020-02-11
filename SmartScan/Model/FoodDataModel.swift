@@ -17,4 +17,5 @@ class FoodDataModel {
     var testedIngredients: String = ""
     var isEmpty: Bool = false
     
+
 }

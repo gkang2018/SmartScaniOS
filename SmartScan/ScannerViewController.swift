@@ -8,20 +8,21 @@
 
 import AVFoundation
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    var testedIngredients: String = ""
-    var product: String = ""
-    var brand: String = ""
-    var ingredients: [String] = []
-    var light: String =  ""
-    
+    var url: String = "";
+    var barcode: String = "";
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.url = "http://zachbodi.pythonanywhere.com/";
         
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
@@ -61,6 +62,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
         captureSession.startRunning()
     }
+    
+    
 
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
@@ -98,49 +101,43 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     func found(code: String) {
-        let createRequest = APIRequest.init(data: code)
-        createRequest.makeGetRequest()
-        let data = createRequest.foodDataModel
-        if data.isEmpty {
-                let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
+        self.barcode = code;
+        let request = APIRequest(data: code)
+        let foodData: FoodDataModel = request.makeGetRequest()
+            if foodData.isEmpty {
+                    let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
 
 
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
-                    , handler: {action in
-                        self.viewDidLoad()
-                })
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
+                        , handler: {action in
+                            self.viewDidLoad()
+                    })
 
-                alert.addAction(cancelAction)
+                    alert.addAction(cancelAction)
 
-            present(alert, animated: true,
-                    completion: nil)
+                present(alert, animated: true,
+                        completion: nil)
 
-        }
-        else {
-                self.brand = data.foodBrand
-                self.ingredients = data.ingredients
-                self.testedIngredients = data.testedIngredients
-                self.light = data.light
-                self.product = data.product
-                
-                performSegue(withIdentifier: "moveToData", sender: self)
-         }
+            }
+            else {
+                    performSegue(withIdentifier: "moveToData", sender: self)
+             }
         
-    
+        
     }
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "moveToData" {
-            let vc = segue.destination as! DataViewController
-            vc.brand = self.brand
-            vc.ingredients = self.ingredients
-            vc.testedIngredients = self.testedIngredients
-            vc.light = self.light
-            vc.product = self.product
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "moveToData" {
+//            let vc = segue.destination as! DataViewController
+//            vc.brand = self.foodBrand
+//            vc.ingredients = self.ingredients
+//            vc.testedIngredients = self.testedIngredients
+//            vc.light = self.light
+//            vc.product = self.product
+//        }
+//    }
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -151,8 +148,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     
-    
-    //MARK: - Networking
-    
+
     
 }

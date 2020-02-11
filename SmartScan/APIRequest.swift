@@ -18,7 +18,7 @@ class APIRequest {
         self.url = "http://zachbodi.pythonanywhere.com/";
         self.barcode = data;
     }
-    
+
     func makeGetRequest() {
         self.url = self.url + self.barcode
         AF.request(url, method: .get).validate().responseData { response in
@@ -26,9 +26,8 @@ class APIRequest {
             let json = try? JSON(data:data)
             self.parseJSON(json: json!)
         }
-
 }
-    
+
     func parseJSON(json: JSON) {
         if json["ingredients"].arrayValue == [] {
             foodDataModel.isEmpty = true
@@ -42,6 +41,6 @@ class APIRequest {
         foodDataModel.product = json["product"].stringValue
         foodDataModel.foodBrand = json["brand"].stringValue
         foodDataModel.light = json["light"].stringValue
-            
+
     }
 }
