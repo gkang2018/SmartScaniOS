@@ -18,7 +18,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     var requestManager = APIRequest()
     
-    
+    // might need to delete, not DRY code
+    var ingredients: [String] = []
+    var light: String = ""
+    var foodBrand: String = ""
+    var product: String = ""
+    var testedIngredients: String = "" 
+ 
 
     
     override func viewDidLoad() {
@@ -103,7 +109,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     func found(code: String) {
-        requestManager.getFoodData(code)
+        requestManager.getFoodData(barcode: code)
         
     }
     
@@ -134,10 +140,33 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 }
 
 extension ScannerViewController: APIManagerDelegate {
+    
     func didUpdateFood(_apiRequest: APIRequest, foodData: FoodDataModel) {
         DispatchQueue.main.async {
          // figure this part out
+            self.ingredients = foodData.ingredients
+            self.foodBrand = foodData.foodBrand
+            self.light = foodData.light
+            self.product = foodData.product
+            self.testedIngredients = foodData.testedIngredients
             
-            
+        }
     }
+        
+    func didFail(error: Error){
+            let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
+
+
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
+                , handler: {action in
+                    self.viewDidLoad()
+            })
+
+            alert.addAction(cancelAction)
+
+        present(alert, animated: true,
+                completion: nil)
+    }
+
+
 }
