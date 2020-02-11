@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B6DC042E327C2FB805F5834 /* Pods_SmartScan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3115B30BEF256207805B0874 /* Pods_SmartScan.framework */; };
+		41DF17AC23F343DC00EC065E /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DF17AB23F343DC00EC065E /* FoodModel.swift */; };
 		CD4A2A7C23EF2FBF0005903D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A7B23EF2FBF0005903D /* AppDelegate.swift */; };
 		CD4A2A7E23EF2FBF0005903D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A2A7D23EF2FBF0005903D /* SceneDelegate.swift */; };
 		CD4A2A8323EF2FBF0005903D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4A2A8123EF2FBF0005903D /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		3115B30BEF256207805B0874 /* Pods_SmartScan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartScan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41DF17AB23F343DC00EC065E /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 		6B615FDB84468BC736E94144 /* Pods-SmartScan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartScan.release.xcconfig"; path = "Target Support Files/Pods-SmartScan/Pods-SmartScan.release.xcconfig"; sourceTree = "<group>"; };
 		853FB2D2EE60CBD634BEF506 /* Pods-SmartScan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartScan.debug.xcconfig"; path = "Target Support Files/Pods-SmartScan/Pods-SmartScan.debug.xcconfig"; sourceTree = "<group>"; };
 		CD4A2A7823EF2FBF0005903D /* SmartScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				CDBB1A6E23EF820C0033152A /* FoodDataModel.swift */,
+				41DF17AB23F343DC00EC065E /* FoodModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				CDBB1A6F23EF820C0033152A /* FoodDataModel.swift in Sources */,
 				CD4A2A9223EF364E0005903D /* APIRequest.swift in Sources */,
 				CD4A2A9023EF31F90005903D /* ScannerViewController.swift in Sources */,
+				41DF17AC23F343DC00EC065E /* FoodModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

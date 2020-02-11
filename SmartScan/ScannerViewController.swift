@@ -15,14 +15,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    var url: String = "";
-    var barcode: String = "";
+    
+    var requestManager = APIRequest()
+    
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.url = "http://zachbodi.pythonanywhere.com/";
+        requestManager.delegate = self
         
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
@@ -101,28 +103,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     func found(code: String) {
-        self.barcode = code;
-        let request = APIRequest(data: code)
-        let foodData: FoodDataModel = request.makeGetRequest()
-            if foodData.isEmpty {
-                    let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
-
-
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
-                        , handler: {action in
-                            self.viewDidLoad()
-                    })
-
-                    alert.addAction(cancelAction)
-
-                present(alert, animated: true,
-                        completion: nil)
-
-            }
-            else {
-                    performSegue(withIdentifier: "moveToData", sender: self)
-             }
-        
+        requestManager.getFoodData(code)
         
     }
     
@@ -150,4 +131,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
 
     
+}
+
+extension ScannerViewController: APIManagerDelegate {
+    func didUpdateFood(_apiRequest: APIRequest, foodData: FoodDataModel) {
+        DispatchQueue.main.async {
+         // figure this part out
+            
+            
+    }
 }
