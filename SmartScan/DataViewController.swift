@@ -60,7 +60,9 @@ class DataViewController: UIViewController {
         
         self.productLabel.text = self.product
         
+        
         self.brandLabel.text = self.brand
+        
         
         let stringRepresentationIngredients = ingredients.joined(separator: ",")
         
