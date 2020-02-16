@@ -35,7 +35,9 @@ struct APIRequest {
                     return
                 }
                 if let safeData = data {
+                    print(safeData)
                     if let food = self.parseJSON(safeData) {
+                        print(food)
                         self.delegate?.didUpdateFood(_apiRequest: self, foodData: food)
                     }
                 }
@@ -51,14 +53,15 @@ struct APIRequest {
             let decodedData = try decoder.decode(FoodData.self, from: foodData)
             let ingredients = decodedData.ingredients
             let light = decodedData.light
-            let foodBrand = decodedData.foodBrand
+            let foodBrand = decodedData.brand
             let product = decodedData.product
-            let testedIngredients = decodedData.testedIngredients
+            let testedIngredients = decodedData.tested_ingredients
             
             let foodResults = FoodDataModel(ingredients: ingredients, light: light, foodBrand: foodBrand, product: product, testedIngredients: testedIngredients)
             return foodResults
         }
         catch {
+            print(error)
             delegate?.didFail(error: error)
             return nil
         }

@@ -12,8 +12,8 @@ import Foundation
 struct FoodData: Codable {
     let ingredients: [String]
     let light: String
-    let foodBrand: String
+    let brand: String
     let product: String
-    let testedIngredients: String
+    let tested_ingredients: String
     
 }

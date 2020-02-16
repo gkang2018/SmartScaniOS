@@ -115,16 +115,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "moveToData" {
-//            let vc = segue.destination as! DataViewController
-//            vc.brand = self.foodBrand
-//            vc.ingredients = self.ingredients
-//            vc.testedIngredients = self.testedIngredients
-//            vc.light = self.light
-//            vc.product = self.product
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moveToData" {
+            let vc = segue.destination as! DataViewController
+            vc.brand = self.foodBrand
+            vc.ingredients = self.ingredients
+            vc.testedIngredients = self.testedIngredients
+            vc.light = self.light
+            vc.product = self.product
+        }
+    }
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -149,23 +149,29 @@ extension ScannerViewController: APIManagerDelegate {
             self.light = foodData.light
             self.product = foodData.product
             self.testedIngredients = foodData.testedIngredients
-            
+            self.performSegue(withIdentifier: "moveToData", sender: self)
         }
+        
     }
         
     func didFail(error: Error){
-            let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
+        DispatchQueue.main.async {
+            
+                let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
 
 
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
-                , handler: {action in
-                    self.viewDidLoad()
-            })
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
+                    , handler: {action in
+                        self.viewDidLoad()
+                })
 
-            alert.addAction(cancelAction)
+                alert.addAction(cancelAction)
 
-        present(alert, animated: true,
-                completion: nil)
+            self.present(alert, animated: true,
+                    completion: nil)
+            
+        }
+
     }
 
 
