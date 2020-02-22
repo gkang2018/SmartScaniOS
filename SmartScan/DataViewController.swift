@@ -64,9 +64,18 @@ class DataViewController: UIViewController {
         self.brandLabel.text = self.brand
         
         
-        let stringRepresentationIngredients = ingredients.joined(separator: ",")
+        var stringRepresentationIngredients = ingredients.joined(separator: ",")
+        stringRepresentationIngredients = "Ingredients: " + stringRepresentationIngredients
+        
+        
         
         textView.text = stringRepresentationIngredients
+            
+        
+        
+        //  disable textview editing
+        
+        textView.isEditable = false 
     }
 
     
