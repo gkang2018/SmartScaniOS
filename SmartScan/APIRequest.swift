@@ -10,37 +10,63 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class APIRequest {
-    var url: String;
-    var barcode: String;
-    var foodDataModel = FoodDataModel()
-    init(data:String) {
-        self.url = "http://zachbodi.pythonanywhere.com/";
-        self.barcode = data;
-    }
+protocol APIManagerDelegate {
+    func didUpdateFood(_apiRequest: APIRequest, foodData: FoodDataModel)
+    func didFail(error: Error)
+}
 
-    func makeGetRequest() {
-        self.url = self.url + self.barcode
-        AF.request(url, method: .get).validate().responseData { response in
-            guard let data = response.data else {return } // figure this thing out
-            let json = try? JSON(data:data)
-            self.parseJSON(json: json!)
+
+struct APIRequest {
+    let url = "http://zachbodi.pythonanywhere.com/";
+    var delegate: APIManagerDelegate?
+    
+    func getFoodData(barcode: String) {
+        let urlString = self.url + barcode
+        makeGetRequest(with: urlString)
+    }
+    
+    
+    func makeGetRequest(with urlString: String) {
+        if let url = URL(string: urlString) {
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) {(data, response, error) in
+                if error != nil {
+                    self.delegate?.didFail(error: error!)
+                    return
+                }
+                if let safeData = data {
+                    print(safeData)
+                    if let food = self.parseJSON(safeData) {
+                        print(food)
+                        self.delegate?.didUpdateFood(_apiRequest: self, foodData: food)
+                    }
+                }
+            }
+            task.resume()
         }
 }
 
-    func parseJSON(json: JSON) {
-        if json["ingredients"].arrayValue == [] {
-            foodDataModel.isEmpty = true
-            return
+    func parseJSON(_ foodData: Data) -> FoodDataModel? {
+        
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode(FoodData.self, from: foodData)
+            let ingredients = decodedData.ingredients
+            let light = decodedData.light
+            let foodBrand = decodedData.brand
+            let product = decodedData.product
+            let testedIngredients = decodedData.tested_ingredients
+            
+            let foodResults = FoodDataModel(ingredients: ingredients, light: light, foodBrand: foodBrand, product: product, testedIngredients: testedIngredients)
+            return foodResults
         }
-        // iterate through the ingredients list and add it to our food datamodel
-        for ingredient in json["ingredients"] {
-            foodDataModel.ingredients.append(ingredient.1.stringValue)
+        catch {
+            print(error)
+            delegate?.didFail(error: error)
+            return nil
         }
-        foodDataModel.testedIngredients = json["tested_ingredients"].stringValue
-        foodDataModel.product = json["product"].stringValue
-        foodDataModel.foodBrand = json["brand"].stringValue
-        foodDataModel.light = json["light"].stringValue
+        
+
 
     }
 }

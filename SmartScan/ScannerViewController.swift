@@ -15,14 +15,22 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    var url: String = "";
-    var barcode: String = "";
+    
+    var requestManager = APIRequest()
+    
+    // might need to delete, not DRY code
+    var ingredients: [String] = []
+    var light: String = ""
+    var foodBrand: String = ""
+    var product: String = ""
+    var testedIngredients: String = "" 
+ 
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.url = "http://zachbodi.pythonanywhere.com/";
+        requestManager.delegate = self
         
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
@@ -64,6 +72,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     
+    
+    
 
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
@@ -74,6 +84,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
 
         if (captureSession?.isRunning == false) {
             captureSession.startRunning()
@@ -82,6 +93,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
 
         if (captureSession?.isRunning == true) {
             captureSession.stopRunning()
@@ -101,43 +113,22 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     func found(code: String) {
-        self.barcode = code;
-        let request = APIRequest(data: code)
-        let foodData: FoodDataModel = request.makeGetRequest()
-            if foodData.isEmpty {
-                    let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
-
-
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
-                        , handler: {action in
-                            self.viewDidLoad()
-                    })
-
-                    alert.addAction(cancelAction)
-
-                present(alert, animated: true,
-                        completion: nil)
-
-            }
-            else {
-                    performSegue(withIdentifier: "moveToData", sender: self)
-             }
-        
+        requestManager.getFoodData(barcode: code)
         
     }
     
     
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "moveToData" {
-//            let vc = segue.destination as! DataViewController
-//            vc.brand = self.foodBrand
-//            vc.ingredients = self.ingredients
-//            vc.testedIngredients = self.testedIngredients
-//            vc.light = self.light
-//            vc.product = self.product
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moveToData" {
+            let vc = segue.destination as! DataViewController
+            vc.brand = self.foodBrand
+            vc.ingredients = self.ingredients
+            vc.testedIngredients = self.testedIngredients
+            vc.light = self.light
+            vc.product = self.product
+        }
+    }
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -150,4 +141,42 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
 
     
+}
+
+extension ScannerViewController: APIManagerDelegate {
+    
+    func didUpdateFood(_apiRequest: APIRequest, foodData: FoodDataModel) {
+        DispatchQueue.main.async {
+         // figure this part out
+            self.ingredients = foodData.ingredients
+            self.foodBrand = foodData.foodBrand
+            self.light = foodData.light
+            self.product = foodData.product
+            self.testedIngredients = foodData.testedIngredients
+            self.performSegue(withIdentifier: "moveToData", sender: self)
+        }
+        
+    }
+        
+    func didFail(error: Error){
+        DispatchQueue.main.async {
+            
+                let alert = UIAlertController(title: "Food Data Not Found", message: "Data for the corresponding barcode could not be found", preferredStyle: .alert)
+
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel
+                    , handler: {action in
+                        self.viewDidLoad()
+                })
+
+                alert.addAction(cancelAction)
+
+            self.present(alert, animated: true,
+                    completion: nil)
+            
+        }
+
+    }
+
+
 }

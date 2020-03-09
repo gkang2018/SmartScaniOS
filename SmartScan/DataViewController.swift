@@ -21,17 +21,62 @@ class DataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lightImage.image = UIImage(named: "yellow.png")
-        print(self.product)
+        updateUI()
+        
         // Do any additional setup after loading the view.
+        
     }
     
     
     
     @IBOutlet weak var lightImage: UIImageView!
     
+    
     @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var productLabel: UILabel!
+    
+    @IBOutlet weak var brandLabel: UILabel!
+    func updateUI() {
+        // first update the image
+        
+        var imageExtension = ""
+        
+        switch self.light {
+        
+        case "untested":
+            imageExtension = "green.png"
+        case "red":
+            imageExtension = "red.png"
+        case "yellow":
+            imageExtension = "yellow.png"
+        case "green":
+            imageExtension = "green.png"
+        default:
+            imageExtension = "yellow.png"
+        }
+        
+        self.lightImage.image = UIImage(named: imageExtension)
+        
+        self.productLabel.text = self.product
+        
+        
+        self.brandLabel.text = self.brand
+        
+        
+        var stringRepresentationIngredients = ingredients.joined(separator: ",")
+        stringRepresentationIngredients = "Ingredients: " + stringRepresentationIngredients
+        
+        
+        
+        textView.text = stringRepresentationIngredients
+            
+        
+        
+        //  disable textview editing
+        
+        textView.isEditable = false 
+    }
 
     
     /*
